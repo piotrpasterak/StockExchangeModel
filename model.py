@@ -46,7 +46,7 @@ if __name__ == "__main__":
 
     model.compile(optimizer='adam', loss='mean_squared_error')
 
-    apple_testing_complete = pd.read_csv(r'apple_testing.csv')
+    apple_testing_complete = pd.read_csv(r'AAPL_test.csv')
     apple_testing_processed = apple_testing_complete.iloc[:, 1:2].values
 
     apple_total = pd.concat((apple_training_complete['Open'], apple_testing_complete['Open']), axis=0)
