@@ -15,7 +15,7 @@ Model ten składa się z następujących podmodułów:
 ### Przygotowania danych
 
 Cześć przygotowująca dane dla sieci neuronowej jest odpowiedzialna za wczytanie danych historycznych z pliku .cvs i normalizacje.
-Dane historyczne to notowania z 5 ostatnich lat dla spółek Apple i Google(Alphabet).
+Dane historyczne to notowania z 5 ostatnich lat dla spółek Apple i Google(Alphabet). Naturalnie dane uczące nie obejmują okresu testowego kiedy następuje predykcja (maj 2019).
 
 Funkcja datapreparation(company_input_data) implementuje tą cześć.
 
