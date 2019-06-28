@@ -3,8 +3,6 @@ from keras.layers.recurrent import LSTM
 from keras.models import Sequential
 from sklearn.preprocessing import MinMaxScaler
 
-import  time
-
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
@@ -21,11 +19,13 @@ if __name__ == "__main__":
 
     features_set = []
     labels = []
-    for i in range(60, 1260):
+    for i in range(60, apple_training_processed.size):
         features_set.append(apple_training_scaled[i - 60:i, 0])
         labels.append(apple_training_scaled[i, 0])
 
     features_set, labels = np.array(features_set), np.array(labels)
+
+    features_set = np.reshape(features_set, (features_set.shape[0], features_set.shape[1], 1))
 
     model = Sequential()
 
@@ -46,6 +46,8 @@ if __name__ == "__main__":
 
     model.compile(optimizer='adam', loss='mean_squared_error')
 
+    model.fit(features_set, labels, epochs=100, batch_size=32)
+
     apple_testing_complete = pd.read_csv(r'AAPL_test.csv')
     apple_testing_processed = apple_testing_complete.iloc[:, 1:2].values
 
@@ -57,7 +59,7 @@ if __name__ == "__main__":
     test_inputs = scaler.transform(test_inputs)
 
     test_features = []
-    for i in range(60, 80):
+    for i in range(60, int(test_inputs.size / 2)):
         test_features.append(test_inputs[i - 60:i, 0])
 
     test_features = np.array(test_features)
@@ -70,8 +72,8 @@ if __name__ == "__main__":
     plt.figure(figsize=(10, 6))
     plt.plot(apple_testing_processed, color='blue', label='Actual Apple Stock Price')
     plt.plot(predictions, color='red', label='Predicted Apple Stock Price')
-    plt.title('Apple Stock Price Prediction')
+    plt.title('Stock Price Prediction')
     plt.xlabel('Date')
-    plt.ylabel('Apple Stock Price')
+    plt.ylabel('Stock Price')
     plt.legend()
     plt.show()
