@@ -3,34 +3,40 @@ Neural networks Stock Exchange modeling project
 
 ## Opis i cel
 
-Celem tego projektu jest stworzenie modelu giełdy papierow wartosciowych.
-Praktycznym zastosowaniem dla takiego modelu jest potrzeba przewidywania zmian notowoań giełdowych.
-Grupami odbiorców byli by analitycy giełdowi, inwestorzy giełdowi, zarzady spolek gieldowych oraz wszyscy zainterosowani przewidywaniem zmian stanu giełdy.
+Celem tego projektu jest stworzenie modelu giełdy papierów wartościowych.
+Praktycznym zastosowaniem dla takiego modelu jest potrzeba przewidywania zmian notowań giełdowych.
+Grupami odbiorców byli by analitycy giełdowi, inwestorzy giełdowi, zarządy spółek giełdowych oraz wszyscy zainteresowani przewidywaniem zmian stanu giełdy.
 
-Model zostal oparty na sieci neurnowej typu LSTM (Long Short-Term Memory network) czyli sieć z długotrwałą pamięcią krótkoterminową.
-Model ten sklada sie z nastepujacych podmodulów:
+Model został oparty na sieci neuronowej typu LSTM (Long Short-Term Memory network) czyli sieć z długotrwałą pamięcią krótkoterminową.
+Model ten składa się z następujących podmodułów:
 
 ### Przygotowania danych
 
-Czesc przygotowujaca dane dla sieci neuronowej jest odpowiedzalna za wczytanie danych historycznych z pliku cvs i normalizacje.
-Dane histroyczne to notowania z 5 ostatnich lat dla spółek Apple i Google(Alphabet).
+Cześć przygotowująca dane dla sieci neuronowej jest odpowiedzialna za wczytanie danych historycznych z pliku .cvs i normalizacje.
+Dane historyczne to notowania z 5 ostatnich lat dla spółek Apple i Google(Alphabet).
+
+Funkcja datapreparation(company_input_data) implementuje tą cześć.
 
 ### Uczenie sieci
 
-Modul uczenia sieci tworzy siec (model) i wykonuje process uczenia sieci przygotowanymi danymi.
+Moduł uczenia sieci tworzy siec (model) i wykonuje proces uczenia sieci przygotowanymi danymi.
+
+Funkcja modeltraining(features_set, labels) implementuje tą cześć.
 
 ### Predykcja i weryfikacja 
 
-W tej czesci nastepuje process przewidywania zmian gieldowych i prezentacji wyznaczonych zman w kontescie prawdziwych zachowan na giełdzie.
-Wynik przewidaywania porwónywany jest miesiecznymi notowaniami (maj 2019) dla spółek Apple i Google(Alphabet).
+W tej części następuje proces przewidywania zmian indeksów giełdowych i prezentacji wyznaczonych zmań w kontekście prawdziwych zachowań na giełdzie.
+Wynik przewidywania porównywany jest na wykresie z miesięcznymi notowaniami (maj 2019) dla spółek Apple i Google(Alphabet).
+
+Funkcja prediction(model_obj, scaler, apple_testing_complete_data, company_data) implementuje tą część.
 
 ## Uruchomienie
 
 Uruchomienie polega na wystartowaniu skryptu python 3.6: model.py 
 
-### Zaleznosci
+### Zależności
 
-Zostaly użyte nastepujace biblioteki:
+Zostały użyte następujące biblioteki:
 
 * tensorflow
 * keras
@@ -43,13 +49,13 @@ Są one wymagane do poprawnego działania skryptu.
 
 ## Wyniki
 
-Ponizej prezentowane sa wyniki:
+Poniżej prezentowane są wyniki:
 
-(assets/apple_plot.png?raw=true "dla spółki Apple")
+[apple result](assets/apple_plot.png?raw=true "dla spółki Apple")
 
-(assets/google_plot.png?raw=true "dla spółki Google")
+[google result](assets/google_plot.png?raw=true "dla spółki Google")
 
 ## Wnioski
 
-Zaprezentowane wyniki wskazuja ze siec LSTM (Long Short-Term Memory) może być z powodzeniem stosowana do przewidywania zmian indeksow gieldowych.
-Problemem mogą byc jedynie wysokie wymagania na moc obliczeniowa w procesie uczenia.
+Zaprezentowane wyniki wskazują ze siec LSTM (Long Short-Term Memory) może być z powodzeniem stosowana do przewidywania zmian indeksów giełdowych.
+Problemem mogą być jedynie wysokie wymagania na moc obliczeniowa w procesie uczenia.
