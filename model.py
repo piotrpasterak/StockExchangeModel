@@ -125,7 +125,8 @@ if __name__ == "__main__":
     """
 
     se_data = {'Apple': (r'data/apple/input/AAPL.csv', r'data/apple/test/AAPL_test.csv'),
-               'Google': (r'data/google/input/GOOG.csv', r'data/google/test/GOOG_test.csv')}
+               'Google': (r'data/google/input/GOOG.csv', r'data/google/test/GOOG_test.csv'),
+               'Facebook': (r'data/facebook/input/FB.csv', r'data/facebook/test/FB_test.csv')}
 
     for label, cmp_data in se_data.items():
         trend_modelling(cmp_data[0], cmp_data[1], label)
